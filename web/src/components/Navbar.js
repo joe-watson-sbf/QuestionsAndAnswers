@@ -2,7 +2,7 @@ import React from 'react'
 import { Link} from 'react-router-dom'
 import MyIconImg from './MyIconImg/MyIconImg';
 
-export const PublicNavbar = ({logOut}) => (
+export const PublicNavbar = () => (
 	<nav>
 		<MyIconImg />
 		<section className="nav-options">
@@ -13,7 +13,6 @@ export const PublicNavbar = ({logOut}) => (
 			<div>
 				<Link to="/login">
 					<span>Log In</span>
-					
 				</Link>
 			</div>
 			
@@ -35,7 +34,14 @@ export const PrivateNavbar = (props) => (
 			</div>
 			<div>
 				<p>
-					{props.children}
+					<Link to="/account">
+						<span>Update Profil</span>
+					</Link>
+				</p>
+				<p>
+					<li>
+						{props.children}
+					</li>
 				</p>
 			</div>
 			

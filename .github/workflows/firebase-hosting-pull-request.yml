@@ -13,5 +13,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_QUESTION_AND_ANSWERS_4F8A6 }}'
-          projectId: question-and-answers-4f8a6
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOFKAU_QUESTIONSANSWERS }}'
+          projectId: sofkau-questionsanswers

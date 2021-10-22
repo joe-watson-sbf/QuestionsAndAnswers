@@ -1,0 +1,291 @@
+.footer-content {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  right: 0%;
+  left: 0%;
+  padding-top: 14px;
+  background-color: #0c0b0b;
+  color: rgba(255, 255, 255, 0.582);
+  behavior: none;
+}
+
+.footer-content div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer-content div h2 {
+  padding: 14px;
+  color: #ea3546;
+}
+
+.footer-content div ul {
+  text-align: left;
+  list-style: none;
+}
+
+.footer-content code {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-decoration: underline;
+}
+
+.logo-img {
+  padding: 0%;
+  margin: 0%;
+  height: 10px;
+}
+
+.logo-img img {
+  width: 50px;
+  height: 40px;
+}
+
+.nav-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.nav-options div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+  width: 240px;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
+
+.nav-options div p {
+  border-radius: 4px;
+}
+
+.nav-options div p li {
+  padding-right: 8px;
+  padding-left: 8px;
+  list-style: none;
+  background-color: #ea3546;
+}
+
+.nav-options div p li:hover {
+  cursor: pointer;
+  background: #222;
+  color: #ea3546;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5%;
+}
+
+.main .loginContainer {
+  width: 540px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.main .loginContainer .login button {
+  background-color: #ea3546;
+  color: whitesmoke;
+  margin-bottom: 2%;
+}
+
+.main .loginContainer .login button:hover {
+  background-color: #ea35478e;
+  color: #383838;
+}
+
+.main .loginContainer .login button:active {
+  background-color: #ea3546;
+  color: whitesmoke;
+}
+
+.main .loginContainer .login span {
+  padding: 8px;
+  color: blue;
+}
+
+.main .loginContainer .login span:hover {
+  cursor: pointer;
+}
+
+.main .loginContainer .main-alert {
+  width: 500px;
+}
+
+.main .loginContainer .alert {
+  padding: 4px;
+  background-color: #ff717f50;
+  color: #0c0b0b;
+  font-size: small;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.content {
+  margin-top: 2%;
+  margin-bottom: 15%;
+  scroll-behavior: smooth;
+}
+
+.content .seach-suggest {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: -2%;
+  margin-bottom: 2%;
+  padding: 8px;
+  z-index: 2;
+}
+
+.content .seach-suggest p {
+  font-family: Arial, Helvetica, sans-serif;
+  border-color: rgba(128, 128, 128, 0.493);
+  padding: 4px;
+  text-transform: capitalize;
+}
+
+.content .seach-suggest p:hover {
+  cursor: pointer;
+  background-color: #ea3546;
+  color: white;
+  border-radius: 4px;
+}
+
+#modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  background-color: rgba(63, 63, 63, 0.24);
+  z-index: 2;
+}
+
+#modal .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#modal .btn button {
+  border: none;
+  width: 190px;
+  height: 2rem;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+#modal .btn #delete {
+  background-color: #ea3546;
+  color: whitesmoke;
+}
+
+#modal .btn #cancel {
+  background-color: #0c0b0b;
+  color: whitesmoke;
+}
+
+#modal .btn #delete:hover {
+  opacity: 1;
+}
+
+#modal .btn #cancel:hover {
+  opacity: 1;
+}
+
+.btn-open {
+  border: none;
+  width: 150px;
+  height: 2rem;
+  border-radius: 2px;
+  opacity: 0.9;
+  background-color: #ea3546;
+  color: whitesmoke;
+}
+
+.btn-open:hover {
+  opacity: 1;
+}
+
+.btn-show {
+  border: none;
+  width: 150px;
+  height: 2rem;
+  border-radius: 2px;
+  opacity: 0.9;
+  background-color: #ccc;
+  color: #000;
+  padding: 7px;
+}
+
+.btn-show:hover {
+  opacity: 1;
+}
+
+.options {
+  text-align: center;
+  width: 320px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+/*# sourceMappingURL=styles.css.map */
