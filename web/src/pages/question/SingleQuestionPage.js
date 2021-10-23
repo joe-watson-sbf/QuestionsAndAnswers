@@ -61,7 +61,7 @@ const SingleQuestionPage = ({
 	)
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, action) => ({
 	question: state.question.question,
 	loading: state.question.loading,
 	hasErrors: state.question.hasErrors,

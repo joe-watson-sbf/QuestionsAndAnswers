@@ -1,4 +1,5 @@
-const URL_BASE = 'http://localhost:8080'  //'https://morning-river-75928.herokuapp.com'; //
+const URL_BASE = 'https://morning-river-75928.herokuapp.com'; //'http://localhost:8080'  //
+
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
@@ -9,6 +10,8 @@ export const loading = () => ({ type: LOADING })
 export const success = payload => ({ type: LOADED_SUCCESS, payload});
 
 export const failure = () => ({ type: LOADED_FAILURE })
+
+
 
 export function fetchQuestions() {
     return async dispatch => {
@@ -107,7 +110,7 @@ export function deleteAnswerByOwner(id) {
                     }
                 }
             )
-            dispatch(success({redirect: null}));
+            dispatch(success())
         } catch (error) {
             dispatch(failure())
         }
