@@ -17,7 +17,6 @@ class CreateUseCaseTest {
 
     CreateUseCase createUseCase;
     QuestionRepository questionRepository;
-    MapperUtils mapperUtils;
 
     @BeforeEach
     public void setup() {

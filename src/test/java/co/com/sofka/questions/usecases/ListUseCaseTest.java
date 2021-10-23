@@ -2,14 +2,11 @@ package co.com.sofka.questions.usecases;
 import co.com.sofka.questions.collections.Question;
 import co.com.sofka.questions.reposioties.QuestionRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-
-import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 

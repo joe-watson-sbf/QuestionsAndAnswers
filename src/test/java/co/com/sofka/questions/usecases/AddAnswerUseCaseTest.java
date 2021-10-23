@@ -23,6 +23,7 @@ class AddAnswerUseCaseTest {
     QuestionRepository questionRepository;
     AnswerRepository answerRepository;
     GetUseCase getUseCase;
+    MapperUtils mapperUtils;
 
     @BeforeEach
     public void setup() {
@@ -30,15 +31,15 @@ class AddAnswerUseCaseTest {
         questionRepository = mock(QuestionRepository.class);
         answerRepository = mock(AnswerRepository.class);
         getUseCase = mock(GetUseCase.class);
+        mapperUtils = mock(MapperUtils.class);
 
         addAnswerUseCase = new AddAnswerUseCase(mapperUtils, getUseCase, answerRepository);
     }
 
     @Test
-    void addAnswerAndSendEmailSuccessTest() {
+    void testAddAnswer() {
 
-        var questionDTO = new QuestionDTO("1","12",
-                "¿QUE ES DDD?","CUALQUIERA", "TECH");
+        var questionDTO = new QuestionDTO("1","12","¿QUE ES DDD?","CUALQUIERA", "TECH");
 
         var question = new Question();
         question.setId("1");
@@ -61,16 +62,17 @@ class AddAnswerUseCaseTest {
         answerDTO.setAnswer("bla bla bla");
 
 
-        when(getUseCase.apply(questionDTO.getId())).thenReturn(Mono.just(questionDTO));
+        when(getUseCase.apply(question.getId())).thenReturn(Mono.just(questionDTO));
+
         when(answerRepository.save(answer)).thenReturn(Mono.just(answer));
 
         StepVerifier.create(addAnswerUseCase.apply(answerDTO))
-                .expectNextMatches(questionDTO1 -> {
-                    assert questionDTO1.getId().equals("0000");
-                    assert questionDTO1.getUserId().equals("12");
-                    assert questionDTO1.getCategory().equals("TECH");
-                    assert questionDTO1.getQuestion().equals("¿QUE ES DDD?");
-                    assert questionDTO1.getType().equals("CUALQUIERA");
+                .expectNextMatches(answer1 ->  {
+                    assert answer1.getId().equals("0000");
+                    assert answer1.getUserId().equals("12");
+                    assert answer1.getCategory().equals("TECH");
+                    assert answer1.getQuestion().equals("¿QUE ES DDD?");
+                    assert answer1.getType().equals("CUALQUIERA");
                     return true;
                 }).verifyComplete();
 
