@@ -50,6 +50,20 @@ public class QuestionRouter {
         );
     }
 
+
+    @Bean
+    public RouterFunction<ServerResponse> update(UpdateUseCase updateUseCase) {
+        return route(PUT("/update").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(QuestionDTO.class)
+                        .flatMap(questionDTO -> updateUseCase.apply(questionDTO)
+                                .flatMap(result -> ServerResponse.ok()
+                                        .contentType(MediaType.TEXT_PLAIN)
+                                        .bodyValue(result))
+                        )
+        );
+    }
+
+
     @Bean
     public RouterFunction<ServerResponse> get(GetUseCase getUseCase) {
         return route(

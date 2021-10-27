@@ -10,9 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-
-
 import static org.mockito.Mockito.*;
+
 @RunWith(MockitoJUnitRunner.class)
 class UpdateUseCaseTest {
     UpdateUseCase updateUseCase;

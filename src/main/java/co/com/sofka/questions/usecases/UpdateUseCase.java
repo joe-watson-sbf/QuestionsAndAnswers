@@ -24,6 +24,7 @@ public class UpdateUseCase implements SaveQuestion {
     @Override
     public Mono<String> apply(QuestionDTO dto) {
         Objects.requireNonNull(dto.getId(), "Id of the question is required");
+        if (!dto.getAnswers().isEmpty()) throw new IllegalArgumentException("Can't update the question!!!");
         return questionRepository
                 .save(mapperUtils.mapperToQuestion(dto.getId()).apply(dto))
                 .map(Question::getId);

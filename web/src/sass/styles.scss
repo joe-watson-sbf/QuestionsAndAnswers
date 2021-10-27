@@ -5,7 +5,7 @@
     bottom: 0;
     right: 0%;
     left: 0%;
-    padding-top: 14px;
+    padding-top: 8px;
     background-color: rgb(12, 11, 11);
     color: rgba(255, 255, 255, 0.582);
     behavior: none;
@@ -17,10 +17,12 @@
         h2{
             padding: 14px;
             color: #ea3546;
+            font-weight: 100;
         }
         ul{
             text-align: left;
             list-style: none;
+            font-size: 0.9rem;
         }
     }
 
@@ -74,8 +76,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 5%;
-    
+    margin-top: 1%;
+
     .loginContainer{
         width: 540px;
         display: flex;
@@ -204,6 +206,7 @@
     opacity: 0.9;
     background-color: #ea3546;
     color: whitesmoke;
+    margin-left: 1%;
 }
 
 .btn-open:hover{
@@ -221,15 +224,56 @@
     padding: 7px;
 }
 
+.btn-update{
+    border: none;
+    width: 150px;
+    height: 2rem;
+    border-radius: 2px;
+    opacity: 0.9;
+    background-color: rgb(35, 66, 87);
+    color: rgb(255, 255, 255);
+    padding: 7px;
+    margin-left: 1%;
+}
+
+.btn-update:hover{
+    opacity: 1;
+    color: cornsilk;
+}
+
+.btn-edit{
+    border: none;
+    width: 150px;
+    height: 2rem;
+    border-radius: 2px;
+    opacity: 0.9;
+    background-color: rgb(30, 40, 85);
+    color: rgb(226, 226, 226);
+    padding: 7px;
+    margin-left: 1%;
+}
+
+.btn-edit:hover{
+    opacity: 1;
+    background-color: rgb(204, 204, 204);
+    color: #000;
+    
+}
+
 .btn-show:hover{
     opacity: 1;
+    color: #000;
 }
 
 .options{
     text-align: center;
-    width: 320px;
+    width: 520px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: stretch;
+    align-items: flex-start;
 }
+
+
+
 
 

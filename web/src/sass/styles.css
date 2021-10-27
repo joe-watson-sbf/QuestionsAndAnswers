@@ -4,7 +4,7 @@
   bottom: 0;
   right: 0%;
   left: 0%;
-  padding-top: 14px;
+  padding-top: 8px;
   background-color: #0c0b0b;
   color: rgba(255, 255, 255, 0.582);
   behavior: none;
@@ -25,11 +25,13 @@
 .footer-content div h2 {
   padding: 14px;
   color: #ea3546;
+  font-weight: 100;
 }
 
 .footer-content div ul {
   text-align: left;
   list-style: none;
+  font-size: 0.9rem;
 }
 
 .footer-content code {
@@ -100,7 +102,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 5%;
+  margin-top: 1%;
 }
 
 .main .loginContainer {
@@ -257,6 +259,7 @@
   opacity: 0.9;
   background-color: #ea3546;
   color: whitesmoke;
+  margin-left: 1%;
 }
 
 .btn-open:hover {
@@ -274,18 +277,57 @@
   padding: 7px;
 }
 
+.btn-update {
+  border: none;
+  width: 150px;
+  height: 2rem;
+  border-radius: 2px;
+  opacity: 0.9;
+  background-color: #234257;
+  color: white;
+  padding: 7px;
+  margin-left: 1%;
+}
+
+.btn-update:hover {
+  opacity: 1;
+  color: cornsilk;
+}
+
+.btn-edit {
+  border: none;
+  width: 150px;
+  height: 2rem;
+  border-radius: 2px;
+  opacity: 0.9;
+  background-color: #1e2855;
+  color: #e2e2e2;
+  padding: 7px;
+  margin-left: 1%;
+}
+
+.btn-edit:hover {
+  opacity: 1;
+  background-color: #cccccc;
+  color: #000;
+}
+
 .btn-show:hover {
   opacity: 1;
+  color: #000;
 }
 
 .options {
   text-align: center;
-  width: 320px;
+  width: 520px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 /*# sourceMappingURL=styles.css.map */

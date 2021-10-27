@@ -1,17 +1,34 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { postQuestion } from '../../actions/questionActions'
 import { connect } from 'react-redux'
+import TextEditor from "../../components/TextEditor/TextEditor";
 
 const FormPage = ({ dispatch, loading, redirect, userId }) => {
-    const { register, handleSubmit } = useForm();
+
+    const [question, setQuestion] = useState();
+    const [error, setError] = useState();
+
     const history = useHistory();
 
-    const onSubmit = data => {
-        data.userId = userId;
-        dispatch(postQuestion(data));
+
+    const onSubmit = event => {
+        event.preventDefault();
+        const data = {
+            "userId": userId,
+            "question": question,
+            "type": event.target.type.value,
+            "category": event.target.category.value
+        }
+
+        processData()===true && dispatch(postQuestion(data));
     };
+
+    const processData = () =>{
+        return (question!==undefined && question.length > 1 && question.length <= 300) 
+            ? true : setError("The question is required");
+            
+    }
 
     useEffect(() => {
         if (redirect) {
@@ -22,12 +39,10 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
     return (
         <section className="content">
             <h1>New Question</h1>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-
+            <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="type">Type</label>
-                    <select {...register("type")} id="">
+                    <select id="type">
                         <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
                         <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
                         <option value="WITH RESULT (OPEN BOX WITH LINK)">WITH RESULT (OPEN BOX WITH LINK)</option>
@@ -36,23 +51,26 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
                 </div>
                 <div>
                     <label htmlFor="category">Category</label>
-                    <select {...register("category")} id="category">
+                    <select id="category">
                         <option value="TECHNOLOGY AND COMPUTER">TECHNOLOGY AND COMPUTER</option>
                         <option value="SCIENCES">SCIENCES</option>
                         <option value="SOFTWARE DEVELOPMENT">SOFTWARE DEVELOPMENT</option>
                         <option value="SOCIAL SCIENCES">SOCIAL SCIENCES</option>
                         <option value="LANGUAGE">LANGUAGE</option>
-
                     </select>
                 </div>
 
                 <div>
                     <label htmlFor="question">Question</label>
-                    <textarea id="question" {...register("question", { required: true, maxLength: 300 })} />
+                    <TextEditor id="question" action={setQuestion}/>
                 </div>
-                <button type="submit" className="button" disabled={loading} >{
-                    loading ? "Saving ...." : "Save"
-                }</button>
+                {
+                    error && <div style={{color:"red", padding: 14 } }>
+                                <p> {error} </p>
+                            </div>
+                }
+                
+                <button type="submit" className="button"> Save </button>
             </form>
         </section>
 

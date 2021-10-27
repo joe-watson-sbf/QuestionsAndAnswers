@@ -1,20 +1,35 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {  fetchQuestion, postAnswer } from '../../actions/questionActions'
 import { connect } from 'react-redux'
 import { Question } from '../../components/Question'
+import TextEditor from "../../components/TextEditor/TextEditor";
 
 const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, userId }) => {
-    const { register, handleSubmit } = useForm();
+
+    
     const { id } = match.params
     const history = useHistory();
+    const [answer, setAnswer] = useState();
+    const [error, setError] = useState();
 
-    const onSubmit = data => {
-        data.userId =  userId;
-        data.questionId = id;
-        dispatch(postAnswer(data));
+
+    const onSubmit = event => {
+        event.preventDefault()
+        const data = {
+            "userId": userId,
+            "questionId": id,
+            "answer": answer
+        }
+        processData() === true && dispatch(postAnswer(data));
     };
+
+    const processData=(data)=>{
+        return (answer!==undefined && answer.length > 1 && answer.length <= 300) 
+        ? true : setError("The answer is required");
+    }
+
+
 
     useEffect(() => {
         dispatch(fetchQuestion(id))
@@ -36,18 +51,30 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
 
     return (
         <section className="content">
+            
             {renderQuestion()}
+
             <h1>New Answer</h1>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
                 <div>
+                    
                     <label htmlFor="answer">Answer</label>
-                    <textarea id="answer" {...register("answer", { required: true, maxLength: 300 })} />
+                    <TextEditor  id="answer" action={setAnswer}/>
                 </div>
-                <button type="submit" className="button" disabled={loading} >{
-                    loading ? "Saving ...." : "Save"
-                }</button>
+
+                {
+                    error && <div style={{color:"red", padding: 14 } }>
+                                <p> {error} </p>
+                            </div>
+                }
+
+                <button type="submit" className="button" disabled={loading} >
+                    {loading ? "Saving ...." : "Save"}
+                </button>
+
             </form>
+
         </section>
 
     );

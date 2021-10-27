@@ -8,6 +8,7 @@ const SignIn = () => {
     const [signUp, setSignUp] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
     const [message, setMessage] = useState("");
 
 
@@ -28,6 +29,16 @@ const SignIn = () => {
         }
     }
 
+    const handlePassworMatch= () =>{
+        if(password!=='' || repeatPassword!==''){
+            if(password!==repeatPassword){
+                setMessage("The password confirmation does not match")
+            }
+        }else{
+            setMessage("Fill all fields")
+        }
+    } 
+
     const handleLogin = ()=>{
         clearMessage();
         Auth.signInWithEmailAndPassword(email, password)
@@ -37,11 +48,19 @@ const SignIn = () => {
     }
 
     const handleCreateAccount=()=>{
-        clearMessage();
-        Auth.createUserWithEmailAndPassword(email, password)
-            .catch((error) => {
-                setMessage(error.message)
-            })
+        
+        if(email!=='' && password !=='' && password===repeatPassword){
+            clearMessage();
+            Auth.createUserWithEmailAndPassword(email, password)
+                .catch((error) => {
+                    setMessage(error.message)
+                })
+        }else{
+            
+            
+            handlePassworMatch();
+        }
+        
     }
 
     const handleSignUp=()=>{
@@ -77,7 +96,7 @@ const SignIn = () => {
                             <input 
                                 type="email" 
                                 name="Username" 
-                                placeholder="Enter your email"
+                                placeholder="Email"
                                 required
                                 value={email}
                                 onChange={(event)=> setEmail(event.target.value)}
@@ -88,12 +107,27 @@ const SignIn = () => {
                             <input 
                                 type="password" 
                                 name="Password" 
-                                placeholder="Enter your password"
+                                placeholder="Password"
                                 required
                                 value={password}
                                 onChange={(event)=> setPassword(event.target.value)}
                             />
                         </div>
+                        {
+                            signUp && 
+
+                            <div className="row">
+                                <input 
+                                    type="password" 
+                                    name="Password" 
+                                    placeholder="Repeat your Password"
+                                    required
+                                    value={repeatPassword}
+                                    onChange={(event)=> setRepeatPassword(event.target.value)}
+                                />
+                            </div>
+
+                        }
                     </div>
                     <div className="main-alert">
                         { message && <span className="alert"> {message} </span>}

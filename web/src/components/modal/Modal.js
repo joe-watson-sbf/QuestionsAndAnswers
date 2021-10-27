@@ -14,6 +14,7 @@ const Modal = (props) => {
         handleShowModal();
     }
 
+
     const handleCancelClick=()=>{
         handleShowModal();
     }
@@ -35,10 +36,15 @@ const Modal = (props) => {
                 </div>
                 :
                 <div className='options'>
-                    <button  className='btn-open' onClick={handleShowModal}>{props.title}</button>
+                    
                     {
-                        props.url && <Link to={props.url} className="btn-show">  View Question </Link>
+                        props.urlView && <Link to={props.urlView} className="btn-show">  View Question </Link>
                     }
+                    {
+                        props.urlUpdate &&  <Link to={props.urlUpdate} className="btn-update">  Update Question </Link>
+                    }
+                   
+                    <button  className='btn-open' onClick={handleShowModal}>{props.title}</button>
                     
                 </div>
             }

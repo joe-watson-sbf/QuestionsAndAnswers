@@ -76,6 +76,29 @@ export function postQuestion(question) {
     }
 }
 
+
+export function updateQuestion(question) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            const response = await fetch(`${URL_BASE}/update`,
+                {
+                    method: 'PUT',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(question)
+                }
+            )
+            const id = await response.text()
+            dispatch(success({redirect: `/question/${id}`}));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
 export function deleteQuestion(id) {
     return async dispatch => {
         dispatch(loading())
@@ -110,7 +133,7 @@ export function deleteAnswerByOwner(id) {
                     }
                 }
             )
-            dispatch(success())
+            dispatch(success({redirect: `/question/${id}`}))
         } catch (error) {
             dispatch(failure())
         }
@@ -139,4 +162,6 @@ export function postAnswer(answer) {
         }
     }
 }
+
+
 

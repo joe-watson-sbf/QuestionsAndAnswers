@@ -18,10 +18,8 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
 
 
     const onDelete = (id) => {
-
         dispatch(deleteQuestion(id));
     }
-
 
     const renderQuestions = () => {
         if (loading) return <p>Loading questions...</p>
@@ -32,7 +30,8 @@ const OwnerQuestionsPage = ({ dispatch, loading, questions, hasErrors, redirect,
                 key={question.id}
                 question={question}
                 owner={true}
-                excerpt onDelete={onDelete} 
+                excerpt onDelete={onDelete}
+
             />
         )
     }

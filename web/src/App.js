@@ -22,6 +22,7 @@ import SignIn from './pages/connexion/SignIn/SignIn';
 import LogOut from './pages/connexion/LogOut/LogOut';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UpdateUser from './pages/connexion/UpdateUser/UpdateUser';
+import UpdateQuestion from './pages/question/UpdateQuestion';
 
 
 
@@ -48,6 +49,7 @@ const App = ({ dispatch }) => {
 						<Route exact path="/" component={HomePage} />
 						<Route exact path="/questions" component={QuestionsPage} />
 						<Route exact path="/question/:id" component={SingleQuestionPage} />
+						<Route exact path="/question/update/:id" component={UpdateQuestion} />
 						<Route exact path="/list" component={OwnerQuestionsPage} />
 						<Route exact path="/answer/:id" component={AnswerFormPage} />
 						<Route exact path="/new" component={QuestionFormPage} />

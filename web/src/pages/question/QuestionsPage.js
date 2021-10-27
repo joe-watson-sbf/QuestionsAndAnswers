@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-
 import { fetchQuestions } from '../../actions/questionActions'
 import { Question } from '../../components/Question'
 
 const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
+
     useEffect(() => {
         dispatch(fetchQuestions())
     }, [dispatch])
@@ -26,9 +26,10 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
 
     const handleSearching = (event) => {
         setQuestionFound(null);
+
         var input = event.target.value.toUpperCase();
         if(input.length>0){
-
+            
             const datas = questions.filter( data => {
                 return (data!==undefined && data.category.includes(input)) && data.category
             });
@@ -51,9 +52,8 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
         }
     }
 
-    const handleSelectClick=(event) => {
-
-        const question = listQuestion.filter( e => e.id===event.target.id);
+    const handleSelectClick=(id) => {
+        const question = listQuestion.filter( e => e.id===id);
         setQuestionFound(question[0]);
         setListQuestion(null)
 
@@ -65,7 +65,7 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
             <div>
                 <input 
                     type="search" 
-                    placeholder="Search by category" 
+                    placeholder="Search by question" 
                     onChange={handleSearching}
                     onKeyPress={handleEnterClick}
                 />
@@ -75,8 +75,10 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
                     {listQuestion && 
                         listQuestion.map((data, idx) => {
                             return (
-                                <p onClick={handleSelectClick} id={data.id} key={idx}> 
-                                    {data.category.toLowerCase()}
+                                <p onClick={() => handleSelectClick(data.id)} key={idx}> 
+                                    <strong> Category:  {data.category.toLowerCase()} </strong>
+                                    <br/>
+                                    <em>{data.question.toLowerCase()}</em>
                                 </p>
                             )
                         })

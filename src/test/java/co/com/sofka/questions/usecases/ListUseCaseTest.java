@@ -3,13 +3,13 @@ import co.com.sofka.questions.collections.Question;
 import co.com.sofka.questions.reposioties.QuestionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
-
-
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 class ListUseCaseTest {
 
     QuestionRepository repository;

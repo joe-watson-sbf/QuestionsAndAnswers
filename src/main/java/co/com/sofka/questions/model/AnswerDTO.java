@@ -12,7 +12,6 @@ public class AnswerDTO {
     private String questionId;
     @NotBlank
     private String answer;
-
     private Integer position;
 
 

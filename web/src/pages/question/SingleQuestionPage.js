@@ -8,20 +8,25 @@ import { Link } from 'react-router-dom'
 import { deleteAnswerByOwner } from '../../actions/questionActions'
 
 const SingleQuestionPage = ({
-
 	match,
 	dispatch,
 	question,
 	hasErrors,
 	loading,
-	userId
+	userId,
+	redirect
 }) => {
 	const { id } = match.params
 
-
-	useEffect(() => {
+	useEffect(()=>{
 		dispatch(fetchQuestion(id))
 	}, [dispatch, id])
+
+	useEffect(() => {
+		if(redirect){
+			dispatch(fetchQuestion(id))
+		}
+	}, [dispatch, id, redirect])
 
 	const renderQuestion = () => {
 		if (loading.question) return <p>Loading question...</p>
@@ -31,9 +36,7 @@ const SingleQuestionPage = ({
 	}
 
 	const onDeleteAnswer=(id)=>{
-		console.log("Answers 1: " , question.answers)
 		dispatch(deleteAnswerByOwner(id));
-		console.log("Answers 2: " , question.answers)
 	}
 
 	const renderAnswers = () => {
@@ -42,9 +45,11 @@ const SingleQuestionPage = ({
 				answer={answer} 
 				userId={userId} 
 				onDelete={onDeleteAnswer}
-				/>
+			/>
 		))
+
 			:
+
 		<p>Empty answer!</p>;
 	}
 
@@ -65,6 +70,7 @@ const mapStateToProps = (state, action) => ({
 	question: state.question.question,
 	loading: state.question.loading,
 	hasErrors: state.question.hasErrors,
+	redirect: state.question.redirect,
 	userId: state.auth.uid
 })
 
