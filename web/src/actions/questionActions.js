@@ -18,7 +18,14 @@ export function fetchQuestions() {
         dispatch(loading())
         try {
             const response = await fetch(
-                `${URL_BASE}/getAll`
+                `${URL_BASE}/getAll`,
+                {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
             )
             const data = await response.json()
             dispatch(success({ questions: data, redirect: null }))
