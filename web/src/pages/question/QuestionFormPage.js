@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postQuestion } from '../../actions/questionActions'
 import { connect } from 'react-redux'
 import TextEditor from "../../components/TextEditor/TextEditor";
 
-const FormPage = ({ dispatch, loading, redirect, userId }) => {
+const FormPage = ({ dispatch, redirect, userId }) => {
 
     const [question, setQuestion] = useState();
     const [error, setError] = useState();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
 
     const onSubmit = event => {
@@ -32,7 +32,7 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
 
     useEffect(() => {
         if (redirect) {
-            history.push(redirect);
+            navigate(redirect);
         }
     }, [redirect, history])
 

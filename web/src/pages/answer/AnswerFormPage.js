@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {  fetchQuestion, postAnswer } from '../../actions/questionActions'
 import { connect } from 'react-redux'
 import { Question } from '../../components/Question'
 import TextEditor from "../../components/TextEditor/TextEditor";
 
-const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, userId }) => {
+const FormPage = ({ dispatch, loading, redirect,hasErrors, question, userId }) => {
 
     
-    const { id } = match.params
-    const history = useHistory();
+    const { id } = useParams()
+    const navigate = useNavigate();
     const [answer, setAnswer] = useState();
     const [error, setError] = useState();
 
@@ -21,7 +21,7 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
             "questionId": id,
             "answer": answer
         }
-        processData() === true && dispatch(postAnswer(data));
+        processData(data) === true && dispatch(postAnswer(data));
     };
 
     const processData=(data)=>{
@@ -37,9 +37,9 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
 
     useEffect(() => {
         if (redirect) {
-            history.push(redirect);
+            navigate(redirect);
         }
-    }, [redirect, history])
+    }, [redirect, navigate])
 
     const renderQuestion = () => {
         if (loading.question) return <p>Loading question...</p>

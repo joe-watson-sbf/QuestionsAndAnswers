@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Outlet } from 'react-router-dom'
 import { fetchQuestions } from '../../actions/questionActions'
 import { Question } from '../../components/Question'
 
@@ -11,84 +12,93 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
 
     const [listQuestion, setListQuestion] = useState(null);
     const [questionFound, setQuestionFound] = useState(null);
-    
+
     const renderQuestions = () => {
         if (loading) return <p>Loading questions...</p>
         if (hasErrors) return <p>Unable to display questions.</p>
 
-        if(questionFound){
+        if (questionFound) {
             return (<Question key={questionFound.id} question={questionFound} excerpt />)
-        }else{
+        } else {
             return questions.map(question => <Question key={question.id} question={question} excerpt />)
         }
-        
+
     }
 
     const handleSearching = (event) => {
         setQuestionFound(null);
 
-        var input = event.target.value.toUpperCase();
-        if(input.length>0){
-            
-            const datas = questions.filter( data => {
-                return (data!==undefined && data.category.includes(input)) && data.category
-            });
-            
-            if(datas.length>0){
-                setListQuestion(datas);
-            }
-            
-        }else{
+        var input = event.target.value.toLowerCase();
+        if (input.length > 0) {
+
+            const datas = questions.filter(data => 
+                    (data.category.toLowerCase().includes(input) ||  data.question.toLowerCase().includes(input)));
+
+            setListQuestion(datas)
+
+        } else {
             setListQuestion(null);
         }
     }
 
-    const handleEnterClick=(event) => {
-        if(event.key === "Enter"){
-            if(listQuestion){
+    const handleEnterClick = (event) => {
+        if (event.key === "Enter") {
+            if (listQuestion) {
                 setQuestionFound(listQuestion[0]);
                 setListQuestion(null)
             }
         }
     }
 
-    const handleSelectClick=(id) => {
-        const question = listQuestion.filter( e => e.id===id);
+    const handleSelectClick = (id) => {
+        const question = listQuestion.filter(e => e.id === id);
         setQuestionFound(question[0]);
         setListQuestion(null)
 
     }
 
     return (
-        <section className="content">
-            <h1>Questions</h1>
+        <section className="content question-page">
+            
+            <Outlet/>
+            <div className='en-tete'>
+                <h1> All Question</h1>
+            </div>
+
             <div>
-                <input 
-                    type="search" 
-                    placeholder="Search by question" 
+                <input
+                    type="search"
+                    placeholder="Search by question"
                     onChange={handleSearching}
                     onKeyPress={handleEnterClick}
                 />
-                
-                
-                <div className='seach-suggest'>
-                    {listQuestion && 
+
+
+
+                {listQuestion && <div className='seach-suggest'>
+                    {listQuestion &&
                         listQuestion.map((data, idx) => {
                             return (
-                                <p onClick={() => handleSelectClick(data.id)} key={idx}> 
-                                    <strong> Category:  {data.category.toLowerCase()} </strong>
-                                    <br/>
-                                    <em>{data.question.toLowerCase()}</em>
-                                </p>
+                                <div className='question' onClick={() => handleSelectClick(data.id)} key={idx}>
+                                    <div className='item'>
+                                        <strong className='category'> {data.category.toLowerCase()} </strong>
+
+                                        <p className='text'
+                                            dangerouslySetInnerHTML={{ __html: data.question }}
+                                        />
+                                    </div>
+                                </div>
                             )
                         })
                     }
-                </div>
-            </div>
-            <div>
-                {renderQuestions()}
+                </div>}
             </div>
             
+            <div style={{marginTop:'2em'}}>
+                {renderQuestions()}
+                
+            </div>
+
         </section>
     )
 }

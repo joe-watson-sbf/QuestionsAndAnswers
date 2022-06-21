@@ -1,22 +1,24 @@
 import React from 'react'
 import { logout } from '../../../actions/authActions';
 import Auth from '../Auth';
+import { signOut } from "firebase/auth";
+import { Link } from 'react-router-dom';
 
 const LogOut = ({ dispatch }) => {
 
     return (
 		Auth.currentUser && (
-			<span
+			<Link to='/'
 
 				onClick={() => 
 					{ 
 						dispatch(logout()); 
-						Auth.signOut();
+						signOut(Auth);
 					}
 				}
 			>
 				Log out
-			</span>
+			</Link>
 		)
 	);
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Auth from '../Auth';
 import { update_profile } from '../../../actions/authActions';
+import { updateProfile } from "firebase/auth";
 
 const UpdateUser = ({ dispatch }) => {
 
@@ -11,27 +12,21 @@ const UpdateUser = ({ dispatch }) => {
     const [message, setMessage] = useState(null);
 
 
-    if(Auth.currentUser){
-        dispatch(update_profile(Auth.currentUser.displayName, Auth.currentUser.email))
-    }
 
     const handleUpdateDataListener = () =>{
         setMessage(null)
         if(name && name!==Auth.currentUser.displayName){
-            Auth.currentUser.updateProfile({displayName: name})
-            setMessage("Name updated!!!")
+            updateProfile(Auth.currentUser, {
+                displayName: name
+              }).then(() => {
+                dispatch(update_profile(Auth.currentUser.displayName, Auth.currentUser.email))
+                setMessage("Profile updated!")
+              }).catch((error) => {
+                setMessage(error.message)
+              });
+        }else{
+            setMessage("Error, try again!")
         }
-
-        if(email && email!==Auth.currentUser.email){
-            Auth.currentUser.verifyBeforeUpdateEmail(email)
-            .catch((e) => setMessage("Invalid email!"))
-
-            Auth.currentUser.updateEmail(email)
-            .then((e) => setMessage("Email updated!"))
-            .catch((e) => setMessage(e.message))
-        }
-        
-
     }
 
     
@@ -41,8 +36,9 @@ const UpdateUser = ({ dispatch }) => {
 
         
             <div>
-                <h2>Update Your Profil</h2>
+                <h1>Update Your Profil</h1>
                 <p>
+                    Username
                     <input 
                         type={"text"}
                         placeholder={"Full name"}
@@ -51,14 +47,16 @@ const UpdateUser = ({ dispatch }) => {
                      />
                 </p>
                 <p>
+                    Email
                     <input 
-                        type={"email"}
+                        type="email"
                         value={email ? email:" " }
+                        disabled='on'
                         onChange = {(event)=> setEmail(event.target.value)}
                      />
                 </p>
             </div>
-            <div className="main-alert">
+            <div className="main-alert" style={{margin:'1em'}}>
                 {message && 
                     <span className="message-alert" > 
                     {message} </span>}

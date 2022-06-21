@@ -1,12 +1,9 @@
 import React from 'react'
 import {
 	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
+	Routes,
+	Route
 } from 'react-router-dom'
-import "firebase/firestore";
-import "firebase/auth";
 import { login} from './actions/authActions';
 import { PublicNavbar, PrivateNavbar } from './components/Navbar'
 import HomePage from './pages/home/HomePage'
@@ -20,9 +17,10 @@ import Footer from './components/footer/Footer';
 import Auth from './pages/connexion/Auth';
 import SignIn from './pages/connexion/SignIn/SignIn';
 import LogOut from './pages/connexion/LogOut/LogOut';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import UpdateUser from './pages/connexion/UpdateUser/UpdateUser';
 import UpdateQuestion from './pages/question/UpdateQuestion';
+import SingleQuestion from './pages/question/SingleQuestion';
+import SingleAnswer from './pages/answer/SingleAnswer';
 
 
 
@@ -36,7 +34,8 @@ const App = ({ dispatch }) => {
 	}
 
 	return (
-		<Router>
+		
+			<Router>
 			{user ?
 				<>
 					<PrivateNavbar>
@@ -44,37 +43,51 @@ const App = ({ dispatch }) => {
 					</PrivateNavbar>
 						
 
-					<Switch>
+					<Routes>
 
-						<Route exact path="/" component={HomePage} />
-						<Route exact path="/questions" component={QuestionsPage} />
-						<Route exact path="/question/:id" component={SingleQuestionPage} />
-						<Route exact path="/question/update/:id" component={UpdateQuestion} />
-						<Route exact path="/list" component={OwnerQuestionsPage} />
-						<Route exact path="/answer/:id" component={AnswerFormPage} />
-						<Route exact path="/new" component={QuestionFormPage} />
-						<Route exact path="/account" render={()=> <UpdateUser dispatch={dispatch} /> } />
-						<Redirect to="/" />
+						<Route exact path="/" element={<HomePage/>} />
+						<Route exact path="/questions" element={<QuestionsPage/>} /> 
+						<Route exact path="question" element={<SingleQuestion/>} >
+							<Route exact path=":id" element={<SingleQuestionPage/>} />
+							<Route exact path="update/:id" element={<UpdateQuestion/>} />
+						</Route>
 
-					</Switch>
+						<Route exact path="/answer" element={<SingleAnswer/>} >
+							<Route exact path=":id" element={<AnswerFormPage/>} />
+						</Route>
+
+						
+						<Route exact path="/list" element={<OwnerQuestionsPage/>} />
+						<Route exact path="/new" element={<QuestionFormPage/>} />
+
+						<Route exact path="/account" element={<UpdateUser dispatch={dispatch} /> } />
+						<Route path="*" element={<HomePage/>}/>
+
+					</Routes>
 				</> :
 				<>
 					<PublicNavbar />
 
-					<Switch>
+					<Routes>
 
-						<Route exact path="/" component={HomePage}/>
-						<Route exact path="/questions" component={QuestionsPage} />
-						<Route exact path="/question/:id" component={SingleQuestionPage} />
-						<Route exact path="/answer/:id" component={AnswerFormPage} />
-						<Route exact path="/login" render={()=> <SignIn dispatch={dispatch} /> } />
-						<Redirect to="/" />
+						<Route exact path="/" element={<HomePage/>}/>
+						<Route exact path="/questions" element={<QuestionsPage/>}/>
+						<Route exact path="/question" element={<SingleQuestionPage/>} />
 
-					</Switch>
+						<Route exact path="/answer" element={<SingleAnswer/>} >
+							<Route exact path=":id" element={<AnswerFormPage/>} />
+						</Route>
+						
+						<Route exact path="/login" element={<SignIn dispatch={dispatch} /> } />
+						<Route path="*" element={<HomePage/>}/>
+
+					</Routes>
 				</>
 			}
 			<Footer />
 		</Router>
+
+		
 	)
 }
 

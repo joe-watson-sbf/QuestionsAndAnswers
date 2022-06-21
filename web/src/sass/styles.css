@@ -1,45 +1,26 @@
 .footer-content {
-  position: fixed;
-  text-align: center;
-  bottom: 0;
-  right: 0%;
-  left: 0%;
-  padding-top: 8px;
-  background-color: #0c0b0b;
-  color: rgba(255, 255, 255, 0.582);
-  behavior: none;
-}
-
-.footer-content div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  padding: 2em 8em;
+  color: #dfdfdf;
+  align-items: center;
+  background-color: #234257;
+  margin-top: 14em;
 }
 
-.footer-content div h2 {
-  padding: 14px;
-  color: #ea3546;
-  font-weight: 100;
+.footer-content code a{
+  color: #f0c88c;
+  text-transform: uppercase;
 }
 
-.footer-content div ul {
-  text-align: left;
-  list-style: none;
-  font-size: 0.9rem;
+.footer-content h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #f0c88c;
+  text-transform: uppercase;
+  opacity: .5;
 }
 
-.footer-content code {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  text-decoration: underline;
-}
 
 .logo-img {
   padding: 0%;
@@ -48,30 +29,17 @@
 }
 
 .logo-img img {
-  width: 50px;
+  width: 40px;
   height: 40px;
 }
 
-.nav-options {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
 
 .nav-options div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0;
   width: 240px;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
+  align-content: space-between;
 }
 
 .nav-options div p {
@@ -82,61 +50,56 @@
   padding-right: 8px;
   padding-left: 8px;
   list-style: none;
-  background-color: #ea3546;
+  background-color: #bd7100;
 }
 
 .nav-options div p li:hover {
   cursor: pointer;
-  background: #222;
-  color: #ea3546;
+  background: #234257;
+  opacity: .7;
 }
 
 .main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   margin-top: 1%;
 }
 
+.main.log{
+  flex-direction: column;
+  align-items: center;
+}
+
 .main .loginContainer {
-  width: 540px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .loginContainer h2 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 2em;
 }
 
 .main .loginContainer .login button {
-  background-color: #ea3546;
+  background-color: #bd7100;
   color: whitesmoke;
-  margin-bottom: 2%;
+  width: 240px;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 1.4em;
+  border: none;
+  padding: 1em 2em;
+  border-radius: .1em;
+  transition: all ease .3s;
 }
 
 .main .loginContainer .login button:hover {
-  background-color: #ea35478e;
-  color: #383838;
-}
-
-.main .loginContainer .login button:active {
-  background-color: #ea3546;
+  background-color: #bd7100;
   color: whitesmoke;
+  opacity: .8;
 }
 
 .main .loginContainer .login span {
@@ -146,109 +109,144 @@
 
 .main .loginContainer .login span:hover {
   cursor: pointer;
+  opacity: .8;
 }
 
 .main .loginContainer .main-alert {
-  width: 500px;
+  width: 400px;
+  margin-top: .6em;
+}
+
+.main .loginContainer .groupInput {
+  transition: all ease-in-out .5s;
 }
 
 .main .loginContainer .alert {
-  padding: 4px;
-  background-color: #ff717f50;
-  color: #0c0b0b;
-  font-size: small;
+  padding: 1em 3em;
+  background-color: #ff001911;
+  color: #810000;
+  font-size: .7rem;
+  font-weight: 500;
+
+  border-radius: .2em;
+
+}
+
+.question-page .button {
+  
+  padding: .5em 1.7em;
+  border-radius: .1em;
   font-weight: 400;
-  word-wrap: break-word;
+  
 }
 
 .content {
   margin-top: 2%;
-  margin-bottom: 15%;
+  margin-bottom: -12em;
   scroll-behavior: smooth;
 }
 
 .content .seach-suggest {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-align: center;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: -2%;
-  margin-bottom: 2%;
-  padding: 8px;
+  padding: 0 2em;
   z-index: 2;
+  margin-bottom: 8em;
 }
 
-.content .seach-suggest p {
-  font-family: Arial, Helvetica, sans-serif;
-  border-color: rgba(128, 128, 128, 0.493);
-  padding: 4px;
-  text-transform: capitalize;
+.content .seach-suggest .question {
+  transition: all ease .1s;
+  text-align: center;
+  padding: .5em 4em;
 }
 
-.content .seach-suggest p:hover {
+.content .seach-suggest .question:hover {
   cursor: pointer;
-  background-color: #ea3546;
-  color: white;
-  border-radius: 4px;
+  background-color: #e2e2e291;
+  border-radius: .2em;
 }
+
+.content .seach-suggest .question .item {
+  margin-bottom: 1em;
+}
+
+.content .seach-suggest .question .category {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  display: block;
+  font-size: .7rem;
+}
+
+
+
+.content .seach-suggest .item .text,
+.content .seach-suggest .item .text>* {
+  color: #234257 !important;
+  font-size: 1.3rem !important;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+
 
 #modal {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-align: center;
-  background-color: rgba(63, 63, 63, 0.24);
+  background-color: #f0c88c;
+  padding: 1em;
+  border-radius: 1em;
   z-index: 2;
+  margin-top: -2em;
+}
+
+#modal div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+#modal div h3{
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+#modal div p{
+  letter-spacing: 0;
+  font-weight: 600;
 }
 
 #modal .btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: block;
+  margin: 1em;
 }
 
 #modal .btn button {
   border: none;
   width: 190px;
   height: 2rem;
-  border-radius: 2px;
-  opacity: 0.8;
+  border-radius: .2em;
+}
+
+#modal .btn button:first-child{
+  margin-right: 2em;
 }
 
 #modal .btn #delete {
-  background-color: #ea3546;
-  color: whitesmoke;
+  color: #234257;
+  background-color: #f0c88c;
 }
 
 #modal .btn #cancel {
-  background-color: #0c0b0b;
+  background-color: #234257;
   color: whitesmoke;
 }
 
 #modal .btn #delete:hover {
-  opacity: 1;
+  opacity: .8;
 }
 
 #modal .btn #cancel:hover {
-  opacity: 1;
+  opacity: .8;
 }
 
 .btn-open {
@@ -257,8 +255,8 @@
   height: 2rem;
   border-radius: 2px;
   opacity: 0.9;
-  background-color: #ea3546;
-  color: whitesmoke;
+  color: #234257;
+  background-color: #f0c88c;
   margin-left: 1%;
 }
 
@@ -273,7 +271,7 @@
   border-radius: 2px;
   opacity: 0.9;
   background-color: #ccc;
-  color: #000;
+  color: #234257;
   padding: 7px;
 }
 
@@ -300,34 +298,28 @@
   height: 2rem;
   border-radius: 2px;
   opacity: 0.9;
-  background-color: #1e2855;
+  background-color: #234257;
   color: #e2e2e2;
   padding: 7px;
   margin-left: 1%;
 }
 
 .btn-edit:hover {
-  opacity: 1;
+  opacity: .8;
   background-color: #cccccc;
-  color: #000;
+  color: #234257;
 }
 
 .btn-show:hover {
-  opacity: 1;
-  color: #000;
+  opacity: .8;
+  color: #234257;
 }
 
-.options {
+.options a,
+.options button {
   text-align: center;
-  width: 520px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-      -ms-flex-pack: stretch;
-          justify-content: stretch;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  width: 120px;
+
 }
+
 /*# sourceMappingURL=styles.css.map */

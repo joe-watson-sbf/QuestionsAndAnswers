@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import firebase from "firebase/app";
-import Auth from '../Auth';
 import GoogleButton from 'react-google-button';
+import Auth from '../Auth';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged
+} from "firebase/auth";
 
 const SignIn = () => {
 
@@ -10,7 +15,6 @@ const SignIn = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [message, setMessage] = useState("");
-
 
     const clearInputs = ()=>{
         setEmail('');
@@ -41,23 +45,24 @@ const SignIn = () => {
 
     const handleLogin = ()=>{
         clearMessage();
-        Auth.signInWithEmailAndPassword(email, password)
+
+        signInWithEmailAndPassword(Auth, email, password)
         .catch((error) => {
             setMessage(error.message)
-        })
+        });
     }
 
     const handleCreateAccount=()=>{
         
         if(email!=='' && password !=='' && password===repeatPassword){
             clearMessage();
-            Auth.createUserWithEmailAndPassword(email, password)
-                .catch((error) => {
-                    setMessage(error.message)
-                })
+
+            createUserWithEmailAndPassword(Auth, email, password)
+            .catch((error) => {
+                setMessage(error.message)
+            });
+
         }else{
-            
-            
             handlePassworMatch();
         }
         
@@ -69,7 +74,7 @@ const SignIn = () => {
     }
 
     const authListener = () => {
-        Auth.onAuthStateChanged((user)=>{
+        onAuthStateChanged(Auth, (user) =>{
             if(user){
                 clearInputs();
             }
@@ -81,17 +86,23 @@ const SignIn = () => {
     })
 
     const signInWithGoogle = () => {
-		const provider = new firebase.auth.GoogleAuthProvider();
-		Auth.signInWithPopup(provider);
+
+        const provider = new GoogleAuthProvider();
+		signInWithPopup(Auth, provider)
+        .catch((error) => {
+            setMessage(error.message)
+            GoogleAuthProvider.credentialFromError(error);
+        });
+		
 	};
 
     return (
-        <div className="main">
+        <section className="main log">
             <div className="loginContainer" >
                 <div >
                     <h2> {signUp ? "Sign Up" : "Sign In"} </h2>
 
-                    <div>
+                    <div className='groupInput'>
                         <div className="row">
                             <input 
                                 type="email" 
@@ -156,7 +167,7 @@ const SignIn = () => {
                 className="btn-google" 
                 onClick={signInWithGoogle} />
 
-        </div>
+        </section>
     )
 }
 

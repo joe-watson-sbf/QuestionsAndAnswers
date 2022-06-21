@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import ReactDOM from 'react-dom/client';
+import { legacy_createStore as createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -16,9 +17,8 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 )
 
-render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <App dispatch={store.dispatch}/>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 )

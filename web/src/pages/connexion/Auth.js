@@ -1,8 +1,7 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { initializeApp } from "firebase/app";
 
-firebase.initializeApp({
+const firebaseConfig = {
 	apiKey: "AIzaSyAwFtH59Kw0GV2t9vUUeXp5kYYIla_DJxU",
 	authDomain: "sofkau-questionsanswers.firebaseapp.com",
 	projectId: "sofkau-questionsanswers",
@@ -10,10 +9,9 @@ firebase.initializeApp({
 	messagingSenderId: "340833965617",
 	appId: "1:340833965617:web:70c5530515309d12fc2710",
 	measurementId: "G-QQZFWPXZ0F"
-});
+};
 
-const Auth = firebase.auth();
-
-
+const app = initializeApp(firebaseConfig);
+const Auth = getAuth(app)
 
 export default Auth;

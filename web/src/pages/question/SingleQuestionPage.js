@@ -1,14 +1,14 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { fetchQuestion } from '../../actions/questionActions'
 import { Question } from '../../components/Question'
 import { Answer } from '../../components/Answer'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { deleteAnswerByOwner } from '../../actions/questionActions'
 
+
 const SingleQuestionPage = ({
-	match,
 	dispatch,
 	question,
 	hasErrors,
@@ -16,14 +16,16 @@ const SingleQuestionPage = ({
 	userId,
 	redirect
 }) => {
-	const { id } = match.params
+	const { id } = useParams()
 
-	useEffect(()=>{
+
+
+	useEffect(() => {
 		dispatch(fetchQuestion(id))
 	}, [dispatch, id])
 
 	useEffect(() => {
-		if(redirect){
+		if (redirect) {
 			dispatch(fetchQuestion(id))
 		}
 	}, [dispatch, id, redirect])
@@ -32,25 +34,25 @@ const SingleQuestionPage = ({
 		if (loading.question) return <p>Loading question...</p>
 		if (hasErrors.question) return <p>Unable to display question.</p>
 
-		return <Question question={question}/>
+		return <Question question={question} />
 	}
 
-	const onDeleteAnswer=(id)=>{
+	const onDeleteAnswer = (id) => {
 		dispatch(deleteAnswerByOwner(id));
 	}
 
 	const renderAnswers = () => {
 		return (question.answers && question.answers.length) ? question.answers.map((answer, idx) => (
-			<Answer key={idx} 
-				answer={answer} 
-				userId={userId} 
+			<Answer key={idx}
+				answer={answer}
+				userId={userId}
 				onDelete={onDeleteAnswer}
 			/>
 		))
 
 			:
 
-		<p>Empty answer!</p>;
+			<p>Empty answer!</p>;
 	}
 
 	return (
@@ -66,7 +68,7 @@ const SingleQuestionPage = ({
 	)
 }
 
-const mapStateToProps = (state, action) => ({
+const mapStateToProps = (state) => ({
 	question: state.question.question,
 	loading: state.question.loading,
 	hasErrors: state.question.hasErrors,

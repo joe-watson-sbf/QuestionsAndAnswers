@@ -1,4 +1,4 @@
-const URL_BASE = 'https://morning-river-75928.herokuapp.com'; //'http://localhost:8080'  //
+const URL_BASE = 'https://questionanswer-blog.herokuapp.com'; //'http://localhost:8080'  //
 
 
 export const LOADING = 'LOADING'

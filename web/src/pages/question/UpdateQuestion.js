@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { fetchQuestion, updateQuestion, postQuestion } from '../../actions/questionActions'
 import RenderHtml from '../../components/renderHtml/RenderHtml'
 import TextEditor from '../../components/TextEditor/TextEditor'
 
 const UpdateQuestion = ({
-	match,
 	dispatch,
 	question,
 	loading,
 	redirect
 }) => {
-	const { id } = match.params
+	const { id } = useParams()
 
     const [message, setMessage] = useState();
     const [content, setContent] = useState();
@@ -53,7 +52,7 @@ const UpdateQuestion = ({
         return "update";
     }
 
-    const renderAlert = (option) =>{
+    const renderAlert = () =>{
         return(
             <div style={{color:"blue", padding:8}}>
                 {
@@ -76,8 +75,8 @@ const UpdateQuestion = ({
                 <br/> <br/>
                 <form onSubmit={onUpdate}>
                     <div>
-                        <label htmlFor="question">Update the question Page</label>
-                        <TextEditor id="question" value="ok" action={setContent}/>
+                        <p style={{marginBottom: '2em'}} htmlFor="question">Update your post </p>
+                        <TextEditor value={question.question} id="question" action={setContent}/>
                     </div>
                     
                     
