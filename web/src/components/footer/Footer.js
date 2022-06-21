@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
 
-    const URL = "https://www.sofka.com.co/es/sofka-university/";
+    const URL = "https://joedev.vakaks.com/";
 
     return (
         <div className="footer-content">
@@ -26,7 +26,7 @@ const Footer = () => {
                 
             <code>
                 <a target="_blank" rel="noopener noreferrer" href={URL}>
-                    &copy; Copyright {new Date().getFullYear()} Sofka University
+                    &copy; Copyright {new Date().getFullYear()} Joe Watson SBF
                 </a>
             </code>
         </div>
