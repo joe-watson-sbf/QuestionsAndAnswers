@@ -74,6 +74,10 @@ const App = ({ dispatch }) => {
 						<Route exact path="/questions" element={<QuestionsPage/>}/>
 						<Route exact path="/question" element={<SingleQuestionPage/>} />
 
+						<Route exact path="question" element={<SingleQuestion/>} >
+							<Route exact path=":id" element={<SingleQuestionPage/>} />
+						</Route>
+
 						<Route exact path="/answer" element={<SingleAnswer/>} >
 							<Route exact path=":id" element={<AnswerFormPage/>} />
 						</Route>

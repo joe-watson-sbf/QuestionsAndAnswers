@@ -52,7 +52,7 @@ const SingleQuestionPage = ({
 
 			:
 
-			<p>Empty answer!</p>;
+			<p>No Comment...</p>;
 	}
 
 	return (
@@ -62,8 +62,12 @@ const SingleQuestionPage = ({
 				Reply
 			</Link>}
 
-			<h2>Answers</h2>
-			{renderAnswers()}
+			<div className='answers'>
+				<h1>Comments</h1>
+				<hr style={{minWidth:'40em'}}/>
+				{renderAnswers()}
+			</div>
+			
 		</section>
 	)
 }

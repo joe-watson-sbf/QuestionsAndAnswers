@@ -1,15 +1,11 @@
 import React from 'react'
-import { render } from 'react-dom'
 import ReactDOM from 'react-dom/client';
 import { legacy_createStore as createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import './sass/styles.css'
-
 import App from './App'
 import rootReducer from './reducers'
-
 import './index.css'
 
 const store = createStore(
