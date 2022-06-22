@@ -1,13 +1,12 @@
 const URL_BASE = 'https://questionanswer-blog.herokuapp.com'; //'http://localhost:8080'  //
-
-
+import axios from "axios";
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
 export const LOADED_FAILURE = 'LOADED_FAILURE'
 
 export const loading = () => ({ type: LOADING })
 
-export const success = payload => ({ type: LOADED_SUCCESS, payload});
+export const success = payload => ({ type: LOADED_SUCCESS, payload });
 
 export const failure = () => ({ type: LOADED_FAILURE })
 
@@ -16,70 +15,60 @@ export const failure = () => ({ type: LOADED_FAILURE })
 export function fetchQuestions() {
     return async dispatch => {
         dispatch(loading())
-        try {
-            const response = await fetch(
-                `${URL_BASE}/getAll`,
-                {
-                    method: 'GET',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            const data = await response.json()
-            dispatch(success({ questions: data, redirect: null }))
-        } catch (error) {
-            dispatch(failure())
-        }
+
+        await axios.get(`${URL_BASE}/getAll`)
+            .then(response => {
+                dispatch(success({ questions: response.data, redirect: null }))
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
+
     }
 }
 
 export function fetchOwnerQuestions(userId) {
     return async dispatch => {
+
         dispatch(loading())
-        try {
-            const response = await fetch(`${URL_BASE}/getOwnerAll/${userId}`)
-            const data = await response.json()
-            dispatch(success({ questions: data, redirect: null }))
-        } catch (error) {
-            dispatch(failure())
-        }
+
+        await axios.get(`${URL_BASE}/getOwnerAll/${userId}`)
+            .then(response => {
+                dispatch(success({ questions: response.data, redirect: null }))
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
+
     }
 }
 
 export function fetchQuestion(id) {
     return async dispatch => {
         dispatch(loading())
-        try {
-            const response = await fetch(`${URL_BASE}/get/${id}`)
-            const data = await response.json()
-            dispatch(success({ question: data, redirect: null }))
-        } catch (error) {
-            dispatch(failure())
-        }
+        await axios.get(`${URL_BASE}/get/${id}`)
+            .then(response => {
+                dispatch(success({ question: response.data, redirect: null }))
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
+
     }
 }
 
 export function postQuestion(question) {
     return async dispatch => {
         dispatch(loading())
-        try {
-            const response = await fetch(`${URL_BASE}/create`,
-                {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(question)
-                }
-            )
-            const id = await response.text()
-            dispatch(success({redirect: `/question/${id}`}));
-        } catch (error) {
-            dispatch(failure())
-        }
+
+        await axios.post(`${URL_BASE}/create`, question)
+            .then(response => {
+                dispatch(success({ redirect: `/question/${response.data}` }));
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
+
     }
 }
 
@@ -87,42 +76,28 @@ export function postQuestion(question) {
 export function updateQuestion(question) {
     return async dispatch => {
         dispatch(loading())
-        try {
-            const response = await fetch(`${URL_BASE}/update`,
-                {
-                    method: 'PUT',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(question)
-                }
-            )
-            const id = await response.text()
-            dispatch(success({redirect: `/question/${id}`}));
-        } catch (error) {
-            dispatch(failure())
-        }
+
+        await axios.put(`${URL_BASE}/update`, question)
+            .then(response => {
+                dispatch(success({ redirect: `/question/${response.data}` }));
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
     }
 }
 
 export function deleteQuestion(id) {
     return async dispatch => {
         dispatch(loading())
-        try {
-            await fetch(`${URL_BASE}/delete/${id}`,
-                {
-                    method: 'DELETE',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            dispatch(success({redirect: `/list`}));
-        } catch (error) {
-            dispatch(failure())
-        }
+
+        await axios.delete(`${URL_BASE}/delete/${id}`)
+            .then(() => {
+                dispatch(success({ redirect: `/list` }));
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
     }
 }
 
@@ -130,20 +105,13 @@ export function deleteQuestion(id) {
 export function deleteAnswerByOwner(id) {
     return async dispatch => {
         dispatch(loading())
-        try {
-            await fetch(`${URL_BASE}/delete/answer/${id}`,
-                {
-                    method: 'DELETE',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            dispatch(success({redirect: `/question/${id}`}))
-        } catch (error) {
-            dispatch(failure())
-        }
+        await axios.delete(`${URL_BASE}/delete/answer/${id}`)
+            .then(() => {
+                dispatch(success({ redirect: `/question/${id}` }))
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
     }
 }
 
@@ -152,21 +120,13 @@ export function deleteAnswerByOwner(id) {
 export function postAnswer(answer) {
     return async dispatch => {
         dispatch(loading())
-        try {
-            await fetch(`${URL_BASE}/add`,
-                {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(answer)
-                }
-            )
-            dispatch(success({redirect: `/question/${answer.questionId}`}));
-        } catch (error) {
-            dispatch(failure())
-        }
+        await axios.post(`${URL_BASE}/add`,answer)
+            .then(() => {
+                dispatch(success({ redirect: `/question/${answer.questionId}` }));
+            })
+            .catch(() => {
+                dispatch(failure())
+            })
     }
 }
 

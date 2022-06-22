@@ -9,15 +9,15 @@ export const Question = ({ question, excerpt, onDelete, owner }) => {
 	return (
 		<article className={excerpt ? 'question-excerpt' : 'question'}>
 			
-			<RenderHtml data={question.question} tag="h2" />
+			<RenderHtml data={question.question} tag="h1" />
 			<RenderHtml data={question.category} tag="p"/>
 			<RenderHtml data={question.type} tag="small"/>
-			<br/><br/><br/>
+			<br/><br/>
 
 			{onDelete && (
 				<>
 					<Modal
-						title="Delete Question"
+						title="Delete"
 						message="Are you sure you want to delete your question?"
 						deleteAction={() => onDelete(question.id)}
 						urlView={`/question/${question.id}`}
@@ -35,6 +35,10 @@ export const Question = ({ question, excerpt, onDelete, owner }) => {
 					View Question
 				</Link>
 			)}
+
+			
+
+
 		</article>
 	)
 } 

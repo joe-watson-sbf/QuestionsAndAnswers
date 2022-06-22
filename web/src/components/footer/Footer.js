@@ -12,13 +12,15 @@ const Footer = () => {
                     Questions & Answers
                 </h2>
             </div>
-                
-            <code>
-                &copy; Copyright {new Date().getFullYear()} { ' '}
-                <a target="_blank" rel="noopener noreferrer" href={URL}>
-                     {' Joe Watson SBF'}
-                </a>
-            </code>
+
+            <div>
+                <code>
+                    &copy; Copyright {new Date().getFullYear()} {' '}
+                    <a target="_blank" rel="noopener noreferrer" href={URL}>
+                        {' Joe Watson SBF'}
+                    </a>
+                </code>
+            </div>
         </div>
     )
 }

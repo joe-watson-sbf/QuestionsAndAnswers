@@ -7,31 +7,30 @@ const HomePage = () => {
 
 
 
-  return (
+	return (
 
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        minHeight: '60vh'
-      }}
-      className="content">
-      <h1> Home </h1>
+		<div className="home-page">
+			<h1 > Hello </h1>
+			
+			<h3 > 
+				{(Auth.currentUser && Auth.currentUser.displayName) &&
+				Auth.currentUser.displayName} 
+			</h3>
 
-      <p style={{ fontSize: '1.4rem', fontWeight: '300' }}>
-        {Auth.currentUser ?
-          <p>{"Welcome back " + Auth.currentUser.displayName}</p> :
-          'Welcome to the question and answer blog'
-        }
+			<div className='welcome' >
+				{Auth.currentUser ?
+					<p style={{ fontSize: '1.7rem'}}>Welcome back to question and answer blog</p> :
+					'Welcome to question and answer blog'
+				}
 
-      </p>
-      <Link to="/questions" className="button">
-        View Questions
-      </Link>
+			</div>
+			<div className='views-link'>
+			<Link to="/questions" className="button">
+				View Questions
+			</Link>
+			</div>
 
-    </div>
-  )
+		</div>
+	)
 }
 export default HomePage

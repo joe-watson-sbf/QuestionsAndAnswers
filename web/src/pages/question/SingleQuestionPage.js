@@ -57,17 +57,22 @@ const SingleQuestionPage = ({
 
 	return (
 		<section className="content">
-			{renderQuestion()}
-			{userId && <Link to={"/answer/" + id} className="button right">
-				Reply
-			</Link>}
+			<div className='reply-btn'>
+				{renderQuestion()}
+				{userId && <Link to={"/answer/" + id} className="button right">
+					Reply
+				</Link>}
+			</div>
 
 			<div className='answers'>
-				<h1>Comments</h1>
-				<hr style={{minWidth:'40em'}}/>
-				{renderAnswers()}
+				<h2>Comments</h2>
+				<hr />
+				<div className='container'>
+					{renderAnswers()}
+				</div>
+
 			</div>
-			
+
 		</section>
 	)
 }

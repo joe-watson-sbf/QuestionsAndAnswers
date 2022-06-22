@@ -97,7 +97,7 @@ const SignIn = () => {
 	};
 
     return (
-        <section className="main log">
+        <section className="log">
             <div className="loginContainer" >
                 <div >
                     <h2> {signUp ? "Sign Up" : "Sign In"} </h2>

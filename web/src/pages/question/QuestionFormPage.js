@@ -4,7 +4,7 @@ import { postQuestion } from '../../actions/questionActions'
 import { connect } from 'react-redux'
 import TextEditor from "../../components/TextEditor/TextEditor";
 
-const FormPage = ({ dispatch, redirect, userId }) => {
+const FormPage = ({ dispatch, redirect, userId, loading }) => {
 
     const [question, setQuestion] = useState();
     const [error, setError] = useState();
@@ -26,7 +26,7 @@ const FormPage = ({ dispatch, redirect, userId }) => {
 
     const processData = () =>{
         return (question!==undefined && question.length > 1 && question.length <= 300) 
-            ? true : setError("The question is required");
+            ? true : setError("Erorr saving; maximum characters 300...");
             
     }
 
@@ -34,11 +34,14 @@ const FormPage = ({ dispatch, redirect, userId }) => {
         if (redirect) {
             navigate(redirect);
         }
-    }, [redirect, history])
+    }, [redirect])
 
     return (
         <section className="content">
+
             <h1>New Question</h1>
+            <hr/>
+
             <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="type">Type</label>
@@ -69,8 +72,9 @@ const FormPage = ({ dispatch, redirect, userId }) => {
                                 <p> {error} </p>
                             </div>
                 }
-                
-                <button type="submit" className="button"> Save </button>
+                <div style={{marginTop:'2em'}}>
+                    <button type="submit" className="button"> {loading ? 'Saving...' : 'Save'} </button>
+                </div>
             </form>
         </section>
 

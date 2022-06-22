@@ -38,13 +38,13 @@ const Modal = (props) => {
                 <div className='options'>
                     
                     {
-                        props.urlView && <Link to={props.urlView} className="btn-show">  View Question </Link>
+                        props.urlView && <Link to={props.urlView} className="btn-show">  View </Link>
                     }
                     {
-                        props.urlUpdate &&  <Link to={props.urlUpdate} className="btn-update">  Update Question </Link>
+                        props.urlUpdate &&  <Link to={props.urlUpdate} className="btn-update"> Update </Link>
                     }
                    
-                    <button  className='btn-open' onClick={handleShowModal}>{props.title}</button>
+                    <span  className="btn-delete" onClick={handleShowModal}>{props.title}</span>
                     
                 </div>
             }

@@ -54,24 +54,30 @@ const FormPage = ({ dispatch, loading, redirect,hasErrors, question, userId }) =
             
             {renderQuestion()}
 
-            <h1>New Answer</h1>
+            <hr/>
+            <h1> Add A Comment </h1>
+            
 
             <form onSubmit={onSubmit}>
                 <div>
                     
-                    <label htmlFor="answer">Answer</label>
+                    <label htmlFor="answer">Comment</label>
                     <TextEditor  id="answer" action={setAnswer}/>
                 </div>
 
                 {
-                    error && <div style={{color:"red", padding: 14 } }>
+                    error && <div style={{color:"#f0c88c", padding: 14 } }>
                                 <p> {error} </p>
                             </div>
                 }
 
+                <div style={{marginTop: '1em' } }>
                 <button type="submit" className="button" disabled={loading} >
-                    {loading ? "Saving ...." : "Save"}
+                    Send
                 </button>
+                </div>
+
+                
 
             </form>
 

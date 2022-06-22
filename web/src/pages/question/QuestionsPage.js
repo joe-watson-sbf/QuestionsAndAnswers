@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Outlet } from 'react-router-dom'
 import { fetchQuestions } from '../../actions/questionActions'
 import { Question } from '../../components/Question'
 
@@ -60,7 +59,6 @@ const QuestionsPage = ({ dispatch, loading, questions, hasErrors }) => {
     return (
         <section className="content question-page">
             
-            <Outlet/>
             <div className='en-tete'>
                 <h1> All Question</h1>
             </div>
