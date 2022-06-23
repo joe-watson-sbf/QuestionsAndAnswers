@@ -17,9 +17,9 @@ const HomePage = () => {
 				Auth.currentUser.displayName} 
 			</h3>
 
-			<div className='welcome' >
+			<div className='welcome'>
 				{Auth.currentUser ?
-					<p style={{ fontSize: '1.7rem'}}>Welcome back to question and answer blog</p> :
+					'Welcome back to question and answer blog' :
 					'Welcome to question and answer blog'
 				}
 
