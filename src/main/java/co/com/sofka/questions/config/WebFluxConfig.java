@@ -9,6 +9,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurerComposite;
 @Configuration
 public class WebFluxConfig {
 
+
     @Bean
     public WebFluxConfigurer corsConfigure() {
         return new WebFluxConfigurerComposite() {
